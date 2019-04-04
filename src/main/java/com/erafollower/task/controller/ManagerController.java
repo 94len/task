@@ -5,6 +5,7 @@ import com.erafollower.task.service.ISystemUserService;
 import com.erafollower.task.util.Encrypt;
 import com.erafollower.task.util.response.ResponseHelper;
 import com.erafollower.task.util.response.ResponseModel;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/manager")
+@Slf4j
 public class ManagerController {
 
     @Autowired
@@ -41,6 +43,7 @@ public class ManagerController {
 
     @GetMapping("/login")
     public @ResponseBody ResponseModel login(String account, String password){
+        log.info("#########  login  #########");
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(account,password);
         //进行验证，这里可以捕获异常，然后返回对应信息

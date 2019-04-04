@@ -20,6 +20,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
         <shiro-spring.version>1.4.0</shiro-spring.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
     </properties>
     <dependencies>
         <dependency>
@@ -78,11 +79,23 @@
             <artifactId>wx-tools</artifactId>
             <version>2.1.4-RELEASE</version>
         </dependency>
-<!-- shiro -->
+        <!-- shiro -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
             <version>${shiro-spring.version}</version>
+        </dependency>
+
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
         </dependency>
     </dependencies>
 

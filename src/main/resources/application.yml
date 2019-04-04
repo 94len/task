@@ -35,3 +35,7 @@ mybatis-plus:
       cache-enabled: false
       #JdbcTypeForNull
       jdbc-type-for-null: 'null'
+
+logging:
+  level:
+    root: info
