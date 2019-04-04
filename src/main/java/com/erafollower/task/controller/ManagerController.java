@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/manager")
 public class ManagerController {
 
@@ -36,6 +36,11 @@ public class ManagerController {
         return ResponseHelper.buildResponseModel("test success!");
     }
 
+
+    @RequestMapping("/toIndex")
+    public String toIndex(){
+        return "index";
+    }
 
 }
 

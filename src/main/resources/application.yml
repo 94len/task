@@ -4,6 +4,11 @@ server:
   port: 8090
 
 spring:
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+    static-path-pattern: /static/**
   datasource:
     url: jdbc:mysql://localhost:3306/taskmanager?useUnicode=true&characterEncoding=utf8
     username: root
@@ -15,7 +20,7 @@ spring:
 mybatis-plus:
   #xml
   mapper-locations: classpath:com/erafollower/task/mapper/*Mapper.xml
-  #bean ÊµÌåÉ¨Ãè£¬¶à¸öpackageÓÃ¶ººÅ»òÕß·ÖºÅ·Ö¸ô
+  #bean Êµï¿½ï¿½É¨ï¿½è£¬ï¿½ï¿½ï¿½packageï¿½Ã¶ï¿½ï¿½Å»ï¿½ï¿½ß·ÖºÅ·Ö¸ï¿½
   typeAliasesPackage: com.erafollower.task.model
   global-config:
     # 3:"UUID";
