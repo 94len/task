@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erafollower.task.mapper.UserMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.erafollower.task.model.po.User">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="nick_name" property="nickName" />
+        <result column="phone_num" property="phoneNum" />
+        <result column="wx_num" property="wxNum" />
+        <result column="email" property="email" />
+        <result column="create_time" property="createTime" />
+        <result column="last_update_time" property="lastUpdateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, nick_name, phone_num, wx_num, email, create_time, last_update_time
+    </sql>
+
+</mapper>

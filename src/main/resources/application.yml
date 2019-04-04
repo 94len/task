@@ -1,0 +1,32 @@
+server:
+  servlet:
+    context-path: /task
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/taskmanager?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: lqq74561
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+#mybatis-plus
+mybatis-plus:
+  #xml
+  mapper-locations: classpath:com/erafollower/task/mapper/*Mapper.xml
+  #bean 实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.erafollower.task.model
+  global-config:
+    # 3:"UUID";
+    id-type: 3
+    field-strategy: 2
+    db-column-underline: true
+    key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
+    logic-delete-value: 1
+    logic-not-delete-value: 0
+    configuration:
+      map-underscore-to-camel-case: true
+      cache-enabled: false
+      #JdbcTypeForNull
+      jdbc-type-for-null: 'null'
