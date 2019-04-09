@@ -17,10 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@RequestMapping("/manager")
 @Slf4j
 public class ManagerController {
 
@@ -50,13 +48,15 @@ public class ManagerController {
         try {
             subject.login(usernamePasswordToken);
         } catch (UnknownAccountException e){
+            log.error("######### 登录失败，没有此账号 #########");
             e.printStackTrace();
-            ResponseModel responseModel = ResponseHelper.noLogin("登录失败，帐号或密码错误");
-            responseModel.setStatus(1001);//1001密码错误状态码
+            ResponseModel responseModel = ResponseHelper.noLogin("登录失败，没有此账号");
+            responseModel.setStatus(1000);//1000密码错误状态码
             return responseModel;
         }catch (IncorrectCredentialsException e){
+            log.error("######### 登录失败，密码错误 #########");
             e.printStackTrace();
-            ResponseModel responseModel = ResponseHelper.noLogin("登录失败，帐号或密码错误");
+            ResponseModel responseModel = ResponseHelper.noLogin("登录失败，密码错误");
             responseModel.setStatus(1001);//1001密码错误状态码
             return responseModel;
         }catch (AuthenticationException e) {
@@ -67,10 +67,10 @@ public class ManagerController {
     }
 
 
-    @GetMapping("/test")
-    public ResponseModel test(){
-        return ResponseHelper.buildResponseModel("test success!");
-    }
+    @GetMapping("/toLogin")
+    public @ResponseBody ResponseModel toLogin(){
+        return ResponseHelper.buildResponseModel("toLogin!");
+}
 
 
     @RequestMapping("/toIndex")
@@ -78,6 +78,11 @@ public class ManagerController {
         return "index";
     }
 
+
+    @RequestMapping("/shiroError")
+    public @ResponseBody ResponseModel shiroError(){
+        return ResponseHelper.buildResponseModel("shiroError!");
+    }
 }
 
 

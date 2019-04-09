@@ -47,20 +47,22 @@ public class ShiroConfiguration {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String, Filter> filterMap = shiroFilterFactoryBean.getFilters();
-        filterMap.put("authc", new MyAuthenticationFilter());
+        /*Map<String, Filter> filterMap = shiroFilterFactoryBean.getFilters();
+        filterMap.put("authc", new MyAuthenticationFilter());*/
         Map<String,String> map = new HashMap<String, String>();
         //登出
         map.put("/logout","logout");
         //不需要认证
+        map.put("/","anon");
+        map.put("/toLogin","anon");
         map.put("/logout","anon");
         map.put("/login*","anon");
         map.put("/shiroError","anon");
         //对所有用户认证
-        //map.put("/**","authc");
-        map.put("/**","anon");
+        map.put("/**","authc");
+        //map.put("/**","anon");
         //未登录后跳转向这个接口
-        //shiroFilterFactoryBean.setLoginUrl("/unLogin");
+        shiroFilterFactoryBean.setLoginUrl("/toLogin");
         //首页
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //错误页面，认证不通过跳转

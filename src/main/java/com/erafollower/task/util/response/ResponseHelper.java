@@ -28,6 +28,25 @@ public class ResponseHelper {
         return response;
     }
 
+    /**
+     * 传入参数错误
+     * @param message
+     * @param <T>
+     * @return
+     */
+    public static <T> ResponseModel<T> paramError(String message) {
+        ResponseModel response = new ResponseModel();
+        response.setStatus(-1);
+        response.setMessage(message);
+        return response;
+    }
+    public static <T> ResponseModel<T> paramError() {
+        ResponseModel response = new ResponseModel();
+        response.setStatus(-1);
+        response.setMessage("param error");
+        return response;
+    }
+
 
     /**
      * 请求的资源不存在
