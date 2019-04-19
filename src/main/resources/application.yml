@@ -1,17 +1,9 @@
-quartz:
-  enabled: true
 server:
   servlet:
     context-path: /task
   port: 8090
 
 spring:
-  #声明thymeleaf使用非严格的html。
-  thymeleaf:
-    servlet:
-      content-type: text/html
-    mode: LEGACYHTML5
-    cache: false
   mvc:
     view:
       prefix: classpath:/templates/
@@ -22,6 +14,7 @@ spring:
     username: root
     password: lqq74561
     driver-class-name: com.mysql.jdbc.Driver
+
 
 #mybatis-plus
 mybatis-plus:

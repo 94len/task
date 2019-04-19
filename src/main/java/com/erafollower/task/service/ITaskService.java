@@ -3,8 +3,6 @@ package com.erafollower.task.service;
 import com.baomidou.mybatisplus.service.IService;
 import com.erafollower.task.model.po.Task;
 
-import java.util.List;
-
 /**
  * <p>
  * 任务表 服务类
