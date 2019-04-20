@@ -11,6 +11,7 @@ import com.erafollower.task.service.IUserService;
 import com.erafollower.task.util.Encrypt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -59,15 +60,17 @@ public class MyTask {
     String phone = null;
     String email = null;
     SimpleMailMessage mailMessage = null;
-    //每隔10分钟执行任务
+    //每隔1分钟执行任务
     @Scheduled(fixedRate = 60000)
     public void toScanData(){
-        log.info("######## 每隔一分钟执行任务 ########");
         now = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
-        taskReminds = taskRemindService.selectList(new EntityWrapper<TaskRemind>().between("remind_time",now,now+60000));
+        taskReminds = taskRemindService.selectList(new EntityWrapper<TaskRemind>().between("remind_time",now,now+70000));
         if(null != taskReminds && taskReminds.size() > 0){
             //获取task
             for (TaskRemind taskRemind : taskReminds) {
+                if(taskRemind.getIsSend() != null && taskRemind.getIsSend() == 1){
+                    continue;
+                }
                 task = taskService.selectById(taskRemind.getTaskId());
                 user =  userService.selectById(task.getUserId());
                 //发送短信
@@ -77,7 +80,7 @@ public class MyTask {
                 //发送邮件
                 if(task.getRemindWay().contentEquals("2")){
                     try {
-                        this.sendEmail(user.getEmail(),user.getNickName(),LocalDateTime.ofEpochSecond(task.getRemindTime()/1000,0,ZoneOffset.ofHours(8)),task.getContent());
+                        this.sendEmail(taskRemind,user.getEmail(),user.getNickName(),LocalDateTime.ofEpochSecond(task.getRemindTime()/1000,0,ZoneOffset.ofHours(8)),task.getContent());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -86,7 +89,7 @@ public class MyTask {
         }
     }
 
-    private void sendEmail(String toEmail, String userName, LocalDateTime remindTime,String content) throws Exception {
+    private void sendEmail(TaskRemind taskRemind,String toEmail, String userName, LocalDateTime remindTime,String content) throws Exception {
         DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         MimeMessage mimeMessage = mailSender.createMimeMessage();
 
@@ -101,8 +104,13 @@ public class MyTask {
         model.put("content",content);
         String templateString = FreeMarkerTemplateUtils.processTemplateIntoString(freemarkerConfig.getTemplate("emailTempl.ftl"), model);
         helper.setText(templateString,true);
-
-        mailSender.send(mimeMessage);
+        try {
+            mailSender.send(mimeMessage);
+            taskRemind.setIsSend(1);
+            taskRemindService.updateById(taskRemind);
+        } catch (MailException e) {
+            e.printStackTrace();
+        }
     }
 
 

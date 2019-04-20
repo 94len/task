@@ -10,13 +10,14 @@
         <id column="id" property="id" />
         <result column="task_id" property="taskId" />
         <result column="remind_time" property="remindTime" />
+        <result column="is_send" property="isSend" />
         <result column="create_time" property="createTime" />
         <result column="last_update_time" property="lastUpdateTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, task_id, remind_time, create_time, last_update_time
+        id, task_id, remind_time, is_send, create_time, last_update_time
     </sql>
 
 </mapper>

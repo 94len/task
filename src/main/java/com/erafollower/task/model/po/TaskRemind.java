@@ -31,6 +31,8 @@ public class TaskRemind implements Serializable {
      */
     private Long remindTime;
 
+    private Integer isSend;
+
     private Date createTime;
 
     private Date lastUpdateTime;
@@ -56,6 +58,13 @@ public class TaskRemind implements Serializable {
     public void setRemindTime(Long remindTime) {
         this.remindTime = remindTime;
     }
+    public Integer getIsSend() {
+        return isSend;
+    }
+
+    public void setIsSend(Integer isSend) {
+        this.isSend = isSend;
+    }
     public Date getCreateTime() {
         return createTime;
     }
@@ -77,6 +86,7 @@ public class TaskRemind implements Serializable {
         "id=" + id +
         ", taskId=" + taskId +
         ", remindTime=" + remindTime +
+        ", isSend=" + isSend +
         ", createTime=" + createTime +
         ", lastUpdateTime=" + lastUpdateTime +
         "}";
