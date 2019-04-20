@@ -2,9 +2,13 @@ package com.erafollower.task.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.toolkit.StringUtils;
+import com.erafollower.task.model.po.Task;
 import com.erafollower.task.model.po.TaskRemind;
 import com.erafollower.task.service.ITaskRemindService;
+import com.erafollower.task.service.ITaskService;
 import com.erafollower.task.task.MyTask;
+import com.erafollower.task.util.response.ResponseHelper;
+import com.erafollower.task.util.response.ResponseModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,6 +33,10 @@ public class TaskController {
     @Autowired
     private ITaskRemindService taskRemindService;
     @Autowired
+    private ITaskService taskService;
+
+
+    @Autowired
     private MyTask myTask;
 
     @GetMapping("/test")
@@ -45,5 +53,20 @@ public class TaskController {
         myTask.toScanData();
         return "success";
     }
+
+    //后台获取事务列表
+    @GetMapping("listAllTask")
+    public ResponseModel listAllTask(){
+        List taskList = taskService.selectList(null);
+        return ResponseHelper.buildResponseModel(taskList);
+    }
+
+    //我的所有事务列表
+    @GetMapping("listAllMyTask")
+    public ResponseModel listAllMyTask(Integer userId){
+        List taskList = taskService.selectList(new EntityWrapper<Task>().eq("user_id",userId));
+        return ResponseHelper.buildResponseModel(taskList);
+    }
+
 
 }
