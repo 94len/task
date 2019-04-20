@@ -12,7 +12,7 @@ import java.util.Date;
  * </p>
  *
  * @author len
- * @since 2019-04-03
+ * @since 2019-04-20
  */
 public class Task implements Serializable {
 
@@ -39,7 +39,7 @@ public class Task implements Serializable {
     /**
      * 提醒时间
      */
-    private Date remindTime;
+    private Long remindTime;
 
     /**
      * 提醒方式(可多选)
@@ -80,11 +80,11 @@ public class Task implements Serializable {
     public void setPic(String pic) {
         this.pic = pic;
     }
-    public Date getRemindTime() {
+    public Long getRemindTime() {
         return remindTime;
     }
 
-    public void setRemindTime(Date remindTime) {
+    public void setRemindTime(Long remindTime) {
         this.remindTime = remindTime;
     }
     public String getRemindWay() {

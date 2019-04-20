@@ -4,6 +4,22 @@ server:
   port: 8090
 
 spring:
+  freemarker:
+    # 缓存配置 开发阶段应该配置为false 因为经常会改
+    cache: false
+    # 模版后缀名 默认为ftl
+    suffix: .ftl
+    charset: utf-8
+    template-loader-path: classpath:/templates/
+  # 邮件相关
+  mail:
+    host: smtp.qq.com
+    username: 891846581@qq.com
+    password: edqqkwxgaztobcia
+    properties:
+      mail:
+        smtp:
+          auth: true
   mvc:
     view:
       prefix: classpath:/templates/
@@ -39,3 +55,4 @@ mybatis-plus:
 logging:
   level:
     root: info
+

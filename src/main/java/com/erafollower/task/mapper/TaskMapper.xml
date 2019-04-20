@@ -11,6 +11,7 @@
         <result column="user_id" property="userId" />
         <result column="content" property="content" />
         <result column="pic" property="pic" />
+        <result column="remind_time" property="remindTime" />
         <result column="remind_way" property="remindWay" />
         <result column="create_time" property="createTime" />
         <result column="last_update_time" property="lastUpdateTime" />
@@ -18,7 +19,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, user_id, content, pic, remind_way, create_time, last_update_time
+        id, user_id, content, pic, remind_time, remind_way, create_time, last_update_time
     </sql>
 
 </mapper>
