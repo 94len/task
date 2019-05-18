@@ -21,4 +21,9 @@ public class Test {
         System.out.println("时间戳 >>> "+dateL);
         System.out.println("Date >>> "+df.format(LocalDateTime.ofEpochSecond(dateL/1000,0,ZoneOffset.ofHours(8))));//1555750166931
     }
+
+    public static void strEncode(String str){
+
+    }
+
 }

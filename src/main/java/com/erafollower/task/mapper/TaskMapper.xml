@@ -2,16 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.erafollower.task.mapper.TaskMapper">
 
-    <!-- 开启二级缓存 -->
-    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
-
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.erafollower.task.model.po.Task">
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
         <result column="content" property="content" />
         <result column="pic" property="pic" />
-        <result column="remind_time" property="remindTime" />
+        <result column="cron" property="cron" />
         <result column="remind_way" property="remindWay" />
         <result column="create_time" property="createTime" />
         <result column="last_update_time" property="lastUpdateTime" />
@@ -19,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, user_id, content, pic, remind_time, remind_way, create_time, last_update_time
+        id, user_id, content, pic, cron, remind_way, create_time, last_update_time
     </sql>
 
 </mapper>

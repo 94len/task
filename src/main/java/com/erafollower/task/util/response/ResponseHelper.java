@@ -14,6 +14,17 @@ public class ResponseHelper {
     }
 
     /**
+     * 请求成功
+     * @return ResponseModel
+     */
+    public static ResponseModel success() {
+        ResponseModel response = new ResponseModel();
+        response.setStatus(HttpStatus.OK.value());
+        response.setMessage(HttpStatus.OK.getReasonPhrase());
+        return response;
+    }
+
+    /**
      * 请求返回内容
      * @param result 返回给前端的vo
      * @param <T> 返回给前端的vo类型
@@ -27,6 +38,19 @@ public class ResponseHelper {
         response.setResult(result);
         return response;
     }
+
+    /**
+     * 发生错误
+     * @return ResponseModel
+     */
+    public static ResponseModel error(Integer status, String message) {
+        ResponseModel response = new ResponseModel();
+        response.setStatus(status);
+        response.setMessage(message);
+        response.setSuccess(false);
+        return response;
+    }
+
 
 
     /**

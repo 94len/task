@@ -12,14 +12,14 @@ import java.util.Date;
  * </p>
  *
  * @author len
- * @since 2019-04-02
+ * @since 2019-05-16
  */
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 姓名
@@ -56,11 +56,11 @@ public class User implements Serializable {
      */
     private Date lastUpdateTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getName() {

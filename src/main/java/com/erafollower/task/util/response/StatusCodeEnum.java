@@ -20,6 +20,10 @@ public enum  StatusCodeEnum {
      */
     BAD_TOKEN(-2,"非法的token"),
 
+    LOGIN_FAIL_NOACCOUNT(-1001,"没有此帐号"),
+    LOGIN_FAIL_PASSWORDERROR(-1002,"密码错误")
+
+
 
     ;
 

@@ -12,19 +12,19 @@ import java.util.Date;
  * </p>
  *
  * @author len
- * @since 2019-04-20
+ * @since 2019-05-16
  */
 public class Task implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
     /**
      * 用户ID
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 任务内容
@@ -39,7 +39,7 @@ public class Task implements Serializable {
     /**
      * 提醒时间
      */
-    private Long remindTime;
+    private String cron;
 
     /**
      * 提醒方式(可多选)
@@ -52,18 +52,18 @@ public class Task implements Serializable {
 
     private Date lastUpdateTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
     public String getContent() {
@@ -80,12 +80,12 @@ public class Task implements Serializable {
     public void setPic(String pic) {
         this.pic = pic;
     }
-    public Long getRemindTime() {
-        return remindTime;
+    public String getCron() {
+        return cron;
     }
 
-    public void setRemindTime(Long remindTime) {
-        this.remindTime = remindTime;
+    public void setCron(String cron) {
+        this.cron = cron;
     }
     public String getRemindWay() {
         return remindWay;
@@ -116,7 +116,7 @@ public class Task implements Serializable {
         ", userId=" + userId +
         ", content=" + content +
         ", pic=" + pic +
-        ", remindTime=" + remindTime +
+        ", cron=" + cron +
         ", remindWay=" + remindWay +
         ", createTime=" + createTime +
         ", lastUpdateTime=" + lastUpdateTime +

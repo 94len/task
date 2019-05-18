@@ -12,58 +12,61 @@ import java.util.Date;
  * </p>
  *
  * @author len
- * @since 2019-04-20
+ * @since 2019-05-16
  */
 public class TaskRemind implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "id", type = IdType.INPUT)
+    private Long id;
 
     /**
      * 任务ID
      */
-    private Integer taskId;
+    private Long taskId;
 
     /**
      * 提醒时间
      */
-    private Long remindTime;
+    private String cron;
 
-    private Integer isSend;
+    /**
+     * 是否已经发送
+     */
+    private Integer isVaild;
 
     private Date createTime;
 
     private Date lastUpdateTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    public Integer getTaskId() {
+    public Long getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(Integer taskId) {
+    public void setTaskId(Long taskId) {
         this.taskId = taskId;
     }
-    public Long getRemindTime() {
-        return remindTime;
+    public String getCron() {
+        return cron;
     }
 
-    public void setRemindTime(Long remindTime) {
-        this.remindTime = remindTime;
+    public void setCron(String cron) {
+        this.cron = cron;
     }
-    public Integer getIsSend() {
-        return isSend;
+    public Integer getIsVaild() {
+        return isVaild;
     }
 
-    public void setIsSend(Integer isSend) {
-        this.isSend = isSend;
+    public void setIsVaild(Integer isVaild) {
+        this.isVaild = isVaild;
     }
     public Date getCreateTime() {
         return createTime;
@@ -85,8 +88,8 @@ public class TaskRemind implements Serializable {
         return "TaskRemind{" +
         "id=" + id +
         ", taskId=" + taskId +
-        ", remindTime=" + remindTime +
-        ", isSend=" + isSend +
+        ", cron=" + cron +
+        ", isVaild=" + isVaild +
         ", createTime=" + createTime +
         ", lastUpdateTime=" + lastUpdateTime +
         "}";

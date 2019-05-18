@@ -9,7 +9,7 @@ import com.erafollower.task.model.po.SystemUser;
  * </p>
  *
  * @author len
- * @since 2019-04-02
+ * @since 2019-05-16
  */
 public interface SystemUserMapper extends BaseMapper<SystemUser> {
 
