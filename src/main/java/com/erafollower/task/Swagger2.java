@@ -33,7 +33,7 @@ public class Swagger2 {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("21点")
-                .description("简单优雅的restfun风格，http://blog.csdn.net/saytime")
+                .description("*&%&%%￥##%#￥&……%#……")
                 .version("1.0.0")
                 .build();
     }
