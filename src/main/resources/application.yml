@@ -25,6 +25,10 @@ spring:
       prefix: classpath:/templates/
       suffix: .html
     static-path-pattern: /static/**
+  thymeleaf:
+    mode: HTML # Template mode to be applied to templates. See also Thymeleaf's TemplateMode enum.
+    prefix: classpath:/templates/ # Prefix that gets prepended to view names when building a URL.
+    suffix: .html # Suffix that gets appended to view names when building a URL.
   datasource:
     url: jdbc:mysql://localhost:3306/taskmanager?useUnicode=true&characterEncoding=utf8
     username: root
