@@ -1,19 +1,14 @@
 package com.erafollower.task.config;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.toolkit.StringUtils;
 import com.erafollower.task.model.po.TaskRemind;
 import com.erafollower.task.service.ITaskRemindService;
 import com.erafollower.task.service.ITaskService;
-import com.sun.xml.internal.ws.model.AbstractWrapperBeanGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
-import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**

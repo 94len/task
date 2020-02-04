@@ -28,8 +28,8 @@ public class MybatisPlusConfig {
     /**
      * SQL执行效率插件
      */
-    @Bean
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
-    }
+//    @Bean
+//    public PerformanceInterceptor performanceInterceptor() {
+//        return new PerformanceInterceptor();
+//    }
 }

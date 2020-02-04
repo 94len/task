@@ -1,6 +1,7 @@
 package com.erafollower.task.task;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.toolkit.StringUtils;
 import com.erafollower.task.model.po.Task;
 import com.erafollower.task.model.po.TaskRemind;
 import com.erafollower.task.model.po.User;
@@ -11,14 +12,22 @@ import com.erafollower.task.util.EmailUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
+import javax.mail.internet.MimeMessage;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 
 /**
@@ -64,10 +73,31 @@ public class ScheduleTask {
                 phone = user.getPhoneNum();
                 //todo
             }
+
+
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+
+
             //发送邮件
             if (task.getRemindWay().contentEquals("2")) {
                 try {
-                    new EmailUtil().sendEmail(mailSender, freemarkerConfig, user.getEmail(), user.getNickName(), task.getContent());
+
+
+                    MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+
+                    helper.setFrom("891846581@qq.com");
+                    helper.setTo(user.getEmail());//1822948363@qq.com
+                    helper.setSubject("【25点】定时提醒");
+                    //设置替换的参数对象
+                    Map<String, Object> model = new HashMap<String, Object>();
+                    model.put("userName", StringUtils.isEmpty(user.getNickName()) ? "用户" : user.getNickName());
+                    model.put("remindTime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                    model.put("content",task.getContent());
+                    String templateString = FreeMarkerTemplateUtils.processTemplateIntoString(freemarkerConfig.getTemplate("emailTempl.ftl"), model);
+                    helper.setText(templateString,true);
+                    mailSender.send(mimeMessage);
+
+//                    new EmailUtil().sendEmail(mailSender, freemarkerConfig, user.getEmail(), user.getNickName(), task.getContent());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
